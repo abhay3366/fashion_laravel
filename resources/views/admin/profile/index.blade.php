@@ -28,7 +28,7 @@
               </div>
               <div class="card-body">
                   <div class="row">    
-                    {{-- <div class="form-group col-md-6 col-12">
+                    <div class="form-group col-md-6 col-12">
                         <div style="">
                             <img style="object-fit: cover;width:100px; height: 100px;border-radius: 50%" src="{{ asset(Auth::user()->image) }}" alt="">
                         </div>
@@ -37,7 +37,7 @@
                         <div class="invalid-feedback">
                           Please fill in the first name
                         </div>
-                      </div>                            --}}
+                      </div>                           
                     <div class="form-group col-md-6 col-12">
                       <label>Name</label>
                       <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required="">
