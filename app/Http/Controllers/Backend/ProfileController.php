@@ -37,7 +37,7 @@ if ($request->hasFile('image')) {
 $user->name = $request->name;
 $user->email = $request->email;
 $user->save();
-
+flash()->success('Your changes have been saved!');
 return redirect()->back()->with('success', 'Profile updated successfully!');
 
     }
@@ -52,6 +52,7 @@ public function updatePassword(Request $request){
     $request->user()->update([
         'password'=>bcrypt($request->password)
     ]);
+    flash()->success('Your changes have been saved!');
     return redirect()->back();
 }
 }

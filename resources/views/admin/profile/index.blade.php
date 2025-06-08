@@ -67,11 +67,7 @@
         <div class="col-md-12">
             <div class="card">
                
-                 @if($errors->any())
-                    @foreach ($errors->all() as $error)
-                        <div class="alert alert-danger">{{ $error }}</div>
-                    @endforeach
-                @endif 
+                
         
                 <form method="post" action="{{route('admin.password.update')}}" class="needs-validation"  novalidate="">
                     @csrf

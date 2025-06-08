@@ -164,11 +164,11 @@
 
 
     <script>
-        @if ($errors->any())
+        @if($errors->any())
             @foreach ($errors->all() as $error)
-                toastr.error("{{ $error }}")
+                toastr.error('{{$error}}')
             @endforeach
-        @endif
+        @endif 
     </script>
 
 
