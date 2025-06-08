@@ -67,13 +67,13 @@
         <div class="col-md-12">
             <div class="card">
                
-                {{-- @if($errors->any())
+                 @if($errors->any())
                     @foreach ($errors->all() as $error)
                         <div class="alert alert-danger">{{ $error }}</div>
                     @endforeach
-                @endif --}}
+                @endif 
         
-                <form method="post" action="" class="needs-validation" novalidate="">
+                <form method="post" action="{{route('admin.password.update')}}" class="needs-validation"  novalidate="">
                     @csrf
                     <div class="card-header">
                         <h4>Update Password</h4>
@@ -82,15 +82,15 @@
                         <div class="row">    
                             <div class="form-group col-12">
                                 <label>Current Password</label>
-                                <input type="text" class="form-control" name="current_password">
+                                <input type="password" class="form-control" name="current_password">
                             </div>
                             <div class="form-group col-12">
                                 <label>New Password</label>
-                                <input type="text" class="form-control" name="password">
+                                <input type="password" class="form-control" name="password">
                             </div>
                             <div class="form-group col-12">
                                 <label>Confirm New Password</label>
-                                <input type="text" class="form-control" name="password_confirmation">
+                                <input type="password" class="form-control" name="password_confirmation">
                             </div>
                         </div>
                     </div>
