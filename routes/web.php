@@ -4,6 +4,7 @@
 use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\UserDasboardController;
+use App\Http\Controllers\frontend\UserProfileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(function(){
     Route::get('dashboard',[UserDasboardController::class,'index'])
     ->name('dashboard');
+    Route::get('profile',[UserProfileController::class,'index'])->name('profile');
 });
 
 
