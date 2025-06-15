@@ -25,6 +25,9 @@
 <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
 
+   <!-- Toastr CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
   <!-- <link rel="stylesheet" href="css/rtl.css"> -->
 </head>
 
@@ -100,6 +103,15 @@
 <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
 <!-- Main Custom -->
 <script src="{{ asset('frontend/js/main.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+ <script>
+        @if($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error('{{$error}}')
+            @endforeach
+        @endif 
+    </script>
 
 </body>
 

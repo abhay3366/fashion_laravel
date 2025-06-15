@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\frontend;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class UserProfileController extends Controller
+class VendorProfileController extends Controller
 {
-    function index()
-    {
-        return view('frontend.dashboard.profile');
+
+    public function index(){
+        return view('vendor.dashboard.profile');
     }
 
-    public function updateProfile(Request $request)
-    {
+    public function profileUpdate(Request $request) {
         $request->validate([
             'username' => 'required|unique:users,username,' . Auth::id(),
             'email'    => 'required|email|unique:users,email,' . Auth::id(),
@@ -42,10 +41,10 @@ class UserProfileController extends Controller
         $user->email = $request->email;
         $user->save();
 
-        return redirect()->route('user.profile')->with('success', 'Profile updated successfully!');
+        return redirect()->route('vendor.profile')->with('success', 'Profile updated successfully!');
     }
 
-    public function updatePassword(Request $request)
+   public function updatePassword(Request $request)
     {
         $request->validate([
             'current_password' => ['required', 'current_password'],
