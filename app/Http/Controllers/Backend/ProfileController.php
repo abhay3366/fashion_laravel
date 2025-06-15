@@ -21,7 +21,7 @@ class ProfileController extends Controller
 ]);
 
 $user = auth()->user();
-if ($request->hasFile('image')) {
+if ($request->hasFile('profile_image')) {
     if(File::exists(public_path($user->image))){
         File::delete(public_path($user->image));
     }
