@@ -26,7 +26,7 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Manage Website</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="#">Slider</a></li>
+                    <li><a class="nav-link" href="{{route('admin.slider.index')}}">Slider</a></li>
                   
                 </ul>
             </li>
@@ -40,7 +40,7 @@
                 </ul>
             </li> --}}
 
-            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
+            {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
           
             
            
