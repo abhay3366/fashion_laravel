@@ -6,3 +6,4 @@
   5 add route of create page and desinge the create page that are make in slider folder
   6 we create a new table for slider so we  already do a slider migration in migration define structure
   7 admin.slider.store route is used to submit data form
+  8 when same code use again and again then we make traits for resuable
