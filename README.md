@@ -7,3 +7,7 @@
   6 we create a new table for slider so we  already do a slider migration in migration define structure
   7 admin.slider.store route is used to submit data form
   8 when same code use again and again then we make traits for resuable
+  ## Installation process of yajra datatable
+    step 1- composer require yajra/laravel-datatables
+    step 2- link jquey datatable css & js 
+    step 3- php artisan datatables:make Users(Modal name)
