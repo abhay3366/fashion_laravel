@@ -22,7 +22,16 @@ class SliderDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'slider.action')
+            ->addColumn('action', function($query){
+                 $editBtn="<a href='".route('admin.slider.edit',$query->id)."' class='btn btn-primary'>Edit</a>";
+                 $deleteBtn="<a href='".route('admin.slider.destroy',$query->id)."' class='btn btn-danger ml-2'>Delete</a>";
+
+                return $editBtn.$deleteBtn;
+            })
+            ->addColumn('banner', function($query){
+               return $img="<img style='width: 100px;height:70px' src='".asset($query->banner)."' alt='img' />";
+            })
+            ->rawColumns(['banner','action'])
             ->setRowId('id');
     }
 
@@ -63,15 +72,17 @@ class SliderDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id')->width(50),
+            Column::make('banner')->width(200),
+            Column::make('title'),
+        
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(60)
+                  ->width(200)
                   ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+          
+           
         ];
     }
 
