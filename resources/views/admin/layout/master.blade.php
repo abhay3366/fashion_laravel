@@ -26,7 +26,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     {{-- font awesome --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+        integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('backned/assets/css/style.css') }}">
@@ -110,12 +112,16 @@
     <script src="{{ asset('backned/assets/js/scripts.js') }}"></script>
     <script src="{{ asset('backned/assets/js/custom.js') }}"></script>
 
+    <!-- Include SweetAlert2 via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
     {{-- dynamick delte --}}
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
-            // Properly configure the CSRF token for all AJAX requests
+         
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -124,7 +130,7 @@
             $('body').on('click', '.delete-item', function(event) {
                 event.preventDefault();
                 let deleteUrl = $(this).attr('href');
-                // alert(deleteUrl);
+                
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -160,17 +166,60 @@
                 });
             })
         })
-    </script>
+    </script> --}}
 
 
     <script>
-        @if($errors->any())
+        @if ($errors->any())
             @foreach ($errors->all() as $error)
-                toastr.error('{{$error}}')
+                toastr.error('{{ $error }}')
             @endforeach
-        @endif 
+        @endif
     </script>
 
+ <script>
+    $(document).ready(function () {
+         $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        $(document).on('click', '.delete-item', function (e) {
+            e.preventDefault();
+            let deleteUrl = $(this).attr('href');
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: deleteUrl,
+                        success: function (data) {
+                            console.log(data);
+                            if(data.success=='success'){
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                                              },
+                        error: function (xhr, status, error) {
+                            Swal.fire("Error", "Something went wrong!", "error");
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
 
 
     {{-- this is for datatable --}}
